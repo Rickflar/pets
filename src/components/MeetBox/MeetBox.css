@@ -1,0 +1,43 @@
+.bigImage{
+    height: 120px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px 10px 0px 0px;
+    border: 1px solid var(--image_border);
+    border-bottom: 0;
+}
+
+.newsDiv{
+    padding: 12px;
+    background: var(--pocket_white);
+    border-radius: 0px 0px 10px 10px;
+    color: var(--pocket_black);
+    -webkit-box-shadow: 0 25px 40px 0 #F5F5F5, 0 0 15px 0 rgba(0,0,0,.08);
+    box-shadow: 0 25px 40px 0 #F5F5F5, 0 0 15px 0 rgba(0,0,0,.08);
+    -moz-box-shadow: 0 25px 40px 0 #F5F5F5, 0 0 15px 0 rgba(0,0,0,.08);
+    border: 1px solid var(--image_border);
+    border-top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.meetTitle{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.meetSubtitle{
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text_secondary);
+}

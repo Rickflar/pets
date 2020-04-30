@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Group, Div } from '@vkontakte/vkui';
 
 import MeetBoxAdmin from './MeetBoxAdmin';
@@ -8,11 +8,7 @@ class MeetList extends Component {
 
     render() {
         const { meets, setParentState } = this.props;
-
-        if(meets === false){
-          return null
-        }
-
+        if (!meets) return null
         return (
             <Group className="transparentBody MeetList">
                 {
@@ -29,7 +25,7 @@ class MeetList extends Component {
                         </>
                         :
                         <Group>
-                            <Div>{ getMessage('meet_empty_list') }</Div>
+                            <Div>{getMessage('meet_empty_list')}</Div>
                         </Group>
                 }
             </Group>

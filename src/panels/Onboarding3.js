@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import { Panel, PanelHeader, Button, FixedLayout, Div } from '@vkontakte/vkui';
-
+import React, { Component } from 'react';
+import { Panel, Placeholder, Button, FixedLayout, Div } from '@vkontakte/vkui';
+import Icon28Notifications from '@vkontakte/icons/dist/28/notifications';
 import connect from '@vkontakte/vk-connect';
 import '@vkontakte/vkui/dist/vkui.css';
 import './Onboarding.css';
@@ -13,33 +13,34 @@ class Rules extends Component {
 
         return (
             <Panel id={id}>
-                <PanelHeader>Диванные петиции</PanelHeader>
-                <Div className='title' style={{ textAlign: 'center', marginTop: '40%' }}>Уведомления</Div>
-                <Div style={{ textAlign: 'justify' }} className='subtitle'>
-                Если вы хотите получать важные уведомления, то разрешите их в следующем окне. </Div>
-                <Div style={{ textAlign: 'center' }} className='subtitle'>
-                Обещаем не тревожить по пустякам!</Div>
+                <Placeholder
+                    stretched
+                    icon={<Icon28Notifications width={56} height={56} />}
+                    header={<div className='title'>Уведомления</div>}
+                >
+                    Если вы хотите получать важные уведомления, то разрешите их в следующем окне. Обещаем не тревожить по пустякам!
+                    </Placeholder>
                 <FixedLayout vertical='bottom'>
                     <Checkbox id='noty'>Не присылать уведомления</Checkbox>
                     <Div style={{ display: 'flex' }}>
                         <Button
-                            size='x'
+                            size='xl'
                             onClick={() => onStoryChange('onboarding', 'onboarding2')}
-                            level="secondary"
-                            stretched
+                            mode="outline"
+                            stretchedß
                         >Назад</Button>
                         <Button
                             style={{ marginLeft: 10 }}
-                            size='l'
+                            size='xl'
                             onClick={() => {
                                 onStoryChange('home', 'meets')
-                                if(document.getElementById('noty').checked){
+                                if (document.getElementById('noty').checked) {
                                     console.log('((')
                                     return;
                                 }
                                 connect.send("VKWebAppAllowMessagesFromGroup", { "group_id": 189366357 });
                             }}
-                            level="primary"
+                            mode="outline"
                             stretched
                         >Начать</Button>
                     </Div>

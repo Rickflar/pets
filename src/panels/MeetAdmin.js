@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Panel, PanelHeader, Div, UsersStack, Spinner, IS_PLATFORM_IOS, Group, Link, HeaderButton, Separator, Button } from '@vkontakte/vkui';
+import { Panel, PanelHeader, Div, UsersStack, Spinner, IS_PLATFORM_IOS, Group, Link, PanelHeaderButton, Separator, Button } from '@vkontakte/vkui';
 
 import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
@@ -62,9 +62,9 @@ class MeetAdmin extends Component {
         return (
             <Panel id={id}>
                 <PanelHeader left={
-                  <HeaderButton onClick={() => onStoryChange('admin', 'meets')}>
+                  <PanelHeaderButton onClick={() => onStoryChange('admin', 'meets')}>
 			               {IS_PLATFORM_IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
-		               </HeaderButton>}>Петиция</PanelHeader>
+		               </PanelHeaderButton>}>Петиция</PanelHeader>
                    <Group>
                    <Div className="MeetImg" style={{ backgroundImage }} >
                        <Div style={{ marginTop: '20%' }} className="MeetName">{ meet.name }</Div>

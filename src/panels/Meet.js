@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Panel, PanelHeader, ActionSheetItem, ActionSheet,
+import { Panel, PanelHeaderButton, PanelHeader, ActionSheetItem, ActionSheet,
   Div, Link, Spinner, UsersStack, IS_PLATFORM_IOS, Group, HeaderButton, Separator, Button } from '@vkontakte/vkui';
 
 import connect from '@vkontakte/vk-connect';
@@ -117,9 +117,9 @@ class Meet extends Component {
         return (
             <Panel id={id}>
                 <PanelHeader left={
-                  <HeaderButton onClick={() => onStoryChange(activeStory, 'meets')}>
+                  <PanelHeaderButton onClick={() => onStoryChange(activeStory, 'meets')}>
 			               {IS_PLATFORM_IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
-		               </HeaderButton>}>Петиция</PanelHeader>
+		               </PanelHeaderButton>}>Петиция</PanelHeader>
 
                    <Div onClick={() => connect.send("VKWebAppShowImages", { images: [ meet.photo ] })} className="MeetImg" style={{ backgroundImage }} >
                        <Div style={{ marginTop: '20%' }} className="MeetName">{ meet.name }</Div>

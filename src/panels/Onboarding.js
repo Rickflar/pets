@@ -1,27 +1,25 @@
-import React, {Component} from 'react';
-import { Panel, PanelHeader, Button, FixedLayout, Div } from '@vkontakte/vkui';
-
+import React, { Component } from 'react';
+import { Panel, Placeholder, Button, FixedLayout, Div } from '@vkontakte/vkui';
+import Icon28Users3Outline from '@vkontakte/icons/dist/28/users_3_outline';
 import '@vkontakte/vkui/dist/vkui.css';
 import './Onboarding.css';
-//import img from '../img/list.png'
 class Rules extends Component {
-
-
     render() {
         const { id, onStoryChange } = this.props;
-      //  const idc = state.scheme === 'space_gray' || 'client_dark' ? 'titleD' : 'titleL'
-    //    const idc2 = state.scheme === 'space_gray' || 'client_dark' ? 'subtitleD' : 'subtitleL'
         return (
             <Panel id={id}>
-                <PanelHeader>Диванные петиции</PanelHeader>
-              {/*  <img alt='' style={{ textAlign: 'center' }} width="75%" height="100%" src={img}/>*/}
-              <Div className='title' style={{ textAlign: 'center', marginTop: '40%' }}>Диванные петиции</Div>
-                <Div style={{ textAlign: 'justify' }} className='subtitle' > Диванные петиции — новый способ выразить свое мнение не выходя из дома.
-Приложение и контент в нем не преследует цели кого-либо оскорбить, является исключительно юмористическим, носит развлекательный контент и тщательно модерируется.</Div>
+                <Placeholder
+                    stretched
+                    icon={<Icon28Users3Outline width={56} height={56} />}
+                    header={<div className='title'>Диванные петиции</div>}
+                >
+                    Диванные петиции — новый способ выразить свое мнение не выходя из дома.
+                    Приложение и контент в нем не преследует цели кого-либо оскорбить, является исключительно юмористическим, носит развлекательный контент и тщательно модерируется.
+                    </Placeholder>
                 <FixedLayout vertical='bottom'>
-                <Div>
-                <Button size='l' stretched onClick={() => onStoryChange('onboarding', 'onboarding2')} level="primary">Далее</Button>
-                </Div>
+                    <Div>
+                        <Button size='xl' stretched onClick={() => onStoryChange('onboarding', 'onboarding2')} mode="outline">Далее</Button>
+                    </Div>
                 </FixedLayout>
             </Panel>
         );

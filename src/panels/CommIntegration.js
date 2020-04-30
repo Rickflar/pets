@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Panel, PanelHeader, Button, IS_PLATFORM_IOS, Placeholder, HeaderButton } from '@vkontakte/vkui';
+import { Panel, PanelHeader, Button, IS_PLATFORM_IOS, Placeholder, PanelHeaderButton } from '@vkontakte/vkui';
 
 import connect from '@vkontakte/vk-connect';
 
@@ -18,11 +18,11 @@ class CommIntegration extends Component {
         return (
             <Panel id={id}>
                 <PanelHeader left={
-                  <HeaderButton onClick={ () => onStoryChange('home', 'meets') }>
+                  <PanelHeaderButton onClick={ () => onStoryChange('home', 'meets') }>
 			               {
                        IS_PLATFORM_IOS ? <Icon28ChevronBack/> : <Icon24Back/>
                      }
-		               </HeaderButton>
+		               </PanelHeaderButton>
                  }> Интеграция
                  </PanelHeader>
         <Placeholder

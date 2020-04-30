@@ -18,10 +18,8 @@
 
 .title {
   font-weight: bold;
-  font-family: Roboto;
-  padding: 5vh 0 2vh 0;
+  font-family: var(--font-tt);
   font-size: 25px;
-  line-height: 1.2;
 }
 
 .subtitle {
