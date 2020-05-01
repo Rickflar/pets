@@ -11,10 +11,10 @@ class MeetBox extends Component {
     const { meet, setParentState } = this.props;
     connect.send('VKWebAppEnableSwipeBack');
     setParentState !== null &&
-    setParentState({
-      meet: meet,
-      activePanel: 'meet'
-    });
+      setParentState({
+        meet: meet,
+        activePanel: 'meet'
+      });
   }
   openActionSheet = (e) => {
     e.stopPropagation();
@@ -41,23 +41,23 @@ class MeetBox extends Component {
       });
     }
     setParentState !== null &&
-    setParentState({
-      popout:
-        <ActionSheet onClose={() => setParentState({ popout: null })}>
-          <ActionSheetItem onClick={this.goMeet} autoclose>
-            Перейти на страницу петиции
+      setParentState({
+        popout:
+          <ActionSheet onClose={() => setParentState({ popout: null })}>
+            <ActionSheetItem onClick={this.goMeet} autoclose>
+              Перейти на страницу петиции
             </ActionSheetItem>
-          {meet.ismember &&
-            <ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
-              Поделиться в истории
+            {meet.ismember &&
+              <ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
+                Поделиться в истории
             </ActionSheetItem>}
-          {meet.ismember &&
-            <ActionSheetItem onClick={() => removeMeetMember()} autoclose theme="destructive">
-              Отказаться от участия
+            {meet.ismember &&
+              <ActionSheetItem onClick={() => removeMeetMember()} autoclose mode="destructive">
+                Отказаться от участия
             </ActionSheetItem>}
-          {IS_PLATFORM_IOS && <ActionSheetItem autoclose theme="cancel">Отменить</ActionSheetItem>}
-        </ActionSheet>,
-    });
+            {IS_PLATFORM_IOS && <ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
+          </ActionSheet>,
+      });
   }
 
   render() {
@@ -70,7 +70,7 @@ class MeetBox extends Component {
           }}
         />
         <div className='newsDiv'>
-          <div style={{minWidth: 0}}>
+          <div style={{ minWidth: 0 }}>
             <div className='meetSubtitle' style={{ color: 'var(--accent)' }}>
               {meet.owner_name + " " + meet.owner_surname}
             </div>

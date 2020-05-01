@@ -1,6 +1,6 @@
 import React from 'react';
 import connect from '@vkontakte/vk-connect';
-import { View, Epic, Tabbar, ConfigProvider, Snackbar, Avatar, TabbarItem, ScreenSpinner } from '@vkontakte/vkui';
+import { View, Epic, Tabbar, ConfigProvider, Snackbar, TabbarItem, ScreenSpinner } from '@vkontakte/vkui';
 
 import '@vkontakte/vkui/dist/vkui.css';
 import './css/App.css';
@@ -12,9 +12,8 @@ import Icon28CompassOutline from '@vkontakte/icons/dist/28/compass_outline';
 import Icon28AddCircleOutline from '@vkontakte/icons/dist/28/add_circle_outline';
 import Icon28UserCircleOutline from '@vkontakte/icons/dist/28/user_circle_outline';
 import Icon28KeyOutline from '@vkontakte/icons/dist/28/key_outline';
-import Icon16Done from '@vkontakte/icons/dist/16/done';
-import Icon16Clear from '@vkontakte/icons/dist/16/clear';
-
+import Icon28CancelCircleOutline from '@vkontakte/icons/dist/28/cancel_circle_outline';
+import Icon28CheckCircleOutline from '@vkontakte/icons/dist/28/check_circle_outline';
 import Home from './panels/Home';
 import Favorite from './panels/Favorite';
 
@@ -225,7 +224,7 @@ class App extends React.Component {
 				duration={2000}
 				layout="vertical"
 				onClose={() => this.setState({ snackbar: null })}
-				before={<Avatar size={24} style={{ backgroundColor: '#4bb34b' }}><Icon16Done fill="#fff" width={14} height={14} /></Avatar>}
+				before={<Icon28CheckCircleOutline width={24} height={24} fill={'var(--accent)'}/>}
 			>
 				{e}
 			</Snackbar>
@@ -238,7 +237,7 @@ class App extends React.Component {
 					duration={2000}
 					layout="vertical"
 					onClose={() => this.setState({ snackbar: null })}
-					before={<Avatar size={24} style={{ backgroundColor: '#FF0000' }}><Icon16Clear fill="#fff" width={14} height={14} /></Avatar>}
+					before={<Icon28CancelCircleOutline width={24} height={24} fill={'var(--destructive)'}/>}
 				>
 					{e}
 				</Snackbar>
