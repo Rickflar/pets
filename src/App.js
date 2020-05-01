@@ -293,9 +293,7 @@ class App extends React.Component {
 			console.log('isCurrentGroupAdmin true');
 		}
 		if (isFirst) { // показываем онбординг, если юзер зашёл первый раз
-			this.api.AddUser(user);
-			this.onStoryChange('onboarding', 'onboarding');
-		} else this.api.UpdateUser(user); // обновить данные юзера в базе
+			this.onStoryChange('onboarding', 'onboarding');} 
 	}
 	render() {
 		const { api, state, onStoryChange, getMeets, makeStory, getComments,
@@ -306,7 +304,7 @@ class App extends React.Component {
 
 		const isUserAdmin = (
 			this.state.fetchedUser.id === 35501089 ||
-			this.state.fetchedUser.id === 236820864 ||
+			this.state.fetchedUser.id === 114752686 ||
 			this.state.fetchedUser.id === 87478742
 		);
 

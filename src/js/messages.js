@@ -13,7 +13,7 @@ export const messages = {
     comm_empty_list: "Комментариев нет",
 
     add_meet_page: "Создание петиции",
-    edit_meet_modal: "Редактирование митинга",
+    edit_meet_modal: "Редактирование петиции",
     add_meet_success: "Петиция отправлена на модерацию, это займёт пару часов",
     add_meet_error: "Ошибка добавления петиции",
 
