@@ -4,6 +4,26 @@ import { dd } from './helpers';
 
 const API_URL = 'https://vargasoff.ru:8000/';
 
+const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+  const byteCharacters = atob(b64Data);
+  const byteArrays = [];
+
+  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    const byteNumbers = new Array(slice.length);
+    for (let i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    byteArrays.push(byteArray);
+  }
+
+  const blob = new Blob(byteArrays, {type: contentType});
+  return blob;
+}
+
 axios.defaults.headers.common = {
   Accept: "application/json, text/plain, */*"
 }
@@ -97,8 +117,14 @@ export default class API {
     const meets = await this.send('GET', `GetMeets`, null);
 
     if (!meets.failed) {
-      meets.forEach(e =>
-        e.photo = e.photo.replace(`b'`, '').replace(`'`, '')
+      meets.forEach(e => {
+        const reader = new FileReader();
+        const blob  = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
+        reader.readAsDataURL(blob);
+        reader.onloadend = function () {
+          e.photo = reader.result;
+        }
+      }
       );
       return meets.reverse();
     } else return [];
@@ -127,8 +153,14 @@ export default class API {
     dd('API: ', 'GetExpiredUserMeets', expireduserMeets);
 
     if (!expireduserMeets.failed) {
-      expireduserMeets.forEach(e =>
-        e.photo = e.photo.replace(`b'`, '').replace(`'`, '')
+      expireduserMeets.forEach(e =>{
+        const reader = new FileReader();
+        const blob  = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
+        reader.readAsDataURL(blob);
+        reader.onloadend = function () {
+          e.photo = reader.result;
+        }
+      }
       );
       return expireduserMeets.reverse();
     } else return [];
@@ -139,8 +171,14 @@ export default class API {
     dd('API: ', 'GetOwneredMeets', ownereduserMeets);
 
     if (!ownereduserMeets.failed) {
-      ownereduserMeets.forEach(e =>
-        e.photo = e.photo.replace(`b'`, '').replace(`'`, '')
+      ownereduserMeets.forEach(e =>{
+        const reader = new FileReader();
+        const blob  = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
+        reader.readAsDataURL(blob);
+        reader.onloadend = function () {
+          e.photo = reader.result;
+        }
+      }
       );
       return ownereduserMeets.reverse();
     } else return [];
@@ -158,8 +196,14 @@ export default class API {
     dd('API: ', 'GetUserMeets', userMeets);
 
     if (!userMeets.failed) {
-      userMeets.forEach(e =>
-        e.photo = e.photo.replace(`b'`, '').replace(`'`, '')
+      userMeets.forEach(e =>{
+        const reader = new FileReader();
+        const blob  = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
+        reader.readAsDataURL(blob);
+        reader.onloadend = function () {
+          e.photo = reader.result;
+        }
+      }
       );
       return userMeets.reverse();
     } else return [];
@@ -217,6 +261,4 @@ export default class API {
 
     return response;
   }
-
-
 }
