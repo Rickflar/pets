@@ -41,8 +41,6 @@ export default class API {
       data
     }).catch(error => {
       console.error('Error API:', error);
-      //    window.showAlert(getMessage('server_offline'));
-      //  return { "status": false, "failed": error.response.data.message }
     });
     return response ? response.data : [];
   }
@@ -72,10 +70,6 @@ export default class API {
     let response = await this.send('POST', 'AddMeet', meet);
 
     dd('API: ', 'AddMeet', response);
-    /*
-    if(!response){
-      response = { failed: 'Нельзя создать больше трёх митингов в день' }
-    }*/
 
     return response;
   }
@@ -109,10 +103,6 @@ export default class API {
     return response;
   }
 
-  /**
-   * Получить список митиног
-   * @return array
-   */
   async GetMeets() {
     const meets = await this.send('GET', `GetMeets`, null);
 
