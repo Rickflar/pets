@@ -60,49 +60,21 @@ export default class API {
     return response;
   }
   async GetGroupInfo() {
-    let response = await this.send('GET', `GetGroupInfo`, null);
-
-    dd('API: ', 'GetGroupInfo', response);
-
-    return response;
+    return await this.send('GET', `GetGroupInfo`, null);
   }
   async AddMeet(meet) {
-    let response = await this.send('POST', 'AddMeet', meet);
-
-    dd('API: ', 'AddMeet', response);
-
-    return response;
+    
+    return await this.send('POST', 'AddMeet', meet);
   }
   async IsFirst(id) {
-    console.log(id)
-    const response = await this.send('GET', `IsFirst?id=${id}`, null); // убрать id, но не факт
 
-    dd('API: ', 'IsFirst', id, response);
-
-    return response;
+    return await this.send('GET', `IsFirst`, null);
   }
   async getStory(meet) {
-    const response = await this.send('GET', `getStory?meet=${meet}`, null);
-
-    dd('API: ', 'getStory', response);
-
-    return response;
+    
+    return await this.send('GET', `getStory?meet=${meet}`, null);
   }
-  async AddUser() {
-    const response = await this.send('POST', 'AddUser', null);
-
-    dd('API: ', 'AddUser', response);
-
-    return response;
-  }
-  async UpdateUser() {
-    const response = await this.send('POST', 'UpdateUser', null);
-
-    dd('API: ', 'UpdateUser', response);
-
-    return response;
-  }
-
+ 
   async GetMeets() {
     const meets = await this.send('GET', `GetMeets`, null);
 
@@ -175,11 +147,8 @@ export default class API {
 
   }
   async RateComment(data) {
-    const response = await this.send('POST', 'RateComment', data);
 
-    dd('API: ', 'RateComment', response);
-
-    return response;
+    return await this.send('POST', 'RateComment', data);
   }
   async GetUserMeets() {
     const userMeets = await this.send('GET', `GetUserMeets`, null);
@@ -201,54 +170,37 @@ export default class API {
   }
 
   async AddMeetMember(data) {
-    const response = await this.send('POST', 'AddMeetMember', data);
 
-    dd('API: ', 'AddMeetMember', response);
-
-    return response;
+    return await this.send('POST', 'AddMeetMember', data);
   }
   async RemoveMeetMember(data) {
-    const response = await this.send('POST', `RemoveMeetMember`, data);
 
-    dd('API: ', 'RemoveMeetMember', response);
-
-    return response;
+    return await this.send('POST', `RemoveMeetMember`, data);
   }
 
   async AddComment(data) {
-    let result = await this.send('POST', `AddComment`, data);
-
-    dd('API: ', 'AddComment', result);
-    return result;
+   
+    return await this.send('POST', `AddComment`, data);
   }
 
   async GetMeetComments(meet) {
 
-    let comments = await this.send('GET', `GetMeetComments?meet=${meet}`, null);
+    return await this.send('GET', `GetMeetComments?meet=${meet}`, null);
 
-    dd('API: ', 'GetMeetComments', comments);
-    return comments;
   }
 
   async RemoveComment(data) {
-    let result = await this.send('POST', `RemoveComment`, data);
-
-    dd('API: ', 'RemoveComment', result);
-    return result;
+    
+    return await this.send('POST', `RemoveComment`, data);
   }
 
   async Approve(data) {
-    const response = await this.send('POST', `admin/Approve`, data);
 
-    dd('API: ', 'Approve', response);
+    return await this.send('POST', `admin/Approve`, data);
 
-    return response;
   }
   async DeApprove(data) {
-    const response = await this.send('POST', `admin/DeApprove`, data);
 
-    dd('API: ', 'DeApprove', response);
-
-    return response;
+    return await this.send('POST', `admin/DeApprove`, data);
   }
 }
