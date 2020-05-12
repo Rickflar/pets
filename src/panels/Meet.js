@@ -101,9 +101,10 @@ class Meet extends Component {
             <ActionSheetItem onClick={share} autoclose>
               Поделиться на стене
                 </ActionSheetItem>
-            <ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
+            {/*<ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
               Поделиться в истории
                 </ActionSheetItem>
+               */}
             {IS_PLATFORM_IOS && <ActionSheetItem autoclose theme="cancel">Отменить</ActionSheetItem>}
           </ActionSheet>,
       });
