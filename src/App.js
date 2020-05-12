@@ -204,17 +204,24 @@ class App extends React.Component {
 		} else window.showOfflinePage(true);
 	}
 	makeStory = async (id) => {
-		console.log('makeStory')
-		let story = await this.api.getStory(id);
-		story = 'data:image/png;base64,' + story.image.replace(`b'`, '').replace(`'`, '');
-		console.log(story);
+		let meet = await this.api.GetMeet(id);
+		let image = 'data:image/png;base64,' + meet.photo;
 		let url = `https://vk.com/app7217332#${id/*this.state.currentMeetId*/}`
 		await connect.send("VKWebAppShowStoryBox", {
-			"background_type": "image", "locked": true, "blob": story, "attachment": {
+			"background_type": "image", "locked": true, "blob": image, "attachment": {
 				"text": "go_to",
 				"type": "url",
 				"url": url
-			}
+			},
+			"stickers": [
+				{
+					"sticker_type": "native",
+					"sticker": {
+						"action_type": "text",
+						"text": meet.name
+					}
+				}
+			]
 		});
 	}
 
