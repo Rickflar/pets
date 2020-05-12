@@ -47,10 +47,10 @@ class MeetBox extends Component {
             <ActionSheetItem onClick={this.goMeet} autoclose>
               Перейти на страницу петиции
             </ActionSheetItem>
-            {meet.ismember &&
+            {/*meet.ismember &&
               <ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
                 Поделиться в истории
-            </ActionSheetItem>}
+            </ActionSheetItem>*/}
             {meet.ismember &&
               <ActionSheetItem onClick={() => removeMeetMember()} autoclose mode="destructive">
                 Отказаться от участия
