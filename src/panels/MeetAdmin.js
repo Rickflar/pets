@@ -45,7 +45,6 @@ class MeetAdmin extends Component {
           .then(res => console.log(200) & connect.send("VKWebAppSendPayload", {"group_id": 189366357, "payload": {"approve": mes}}));
           this.setState({ disabled: true })
           this.api.Approve({
-            id: fetchedUser.id,
             meet: meet.id
           }).then( e => onStoryChange('admin', 'meets') )
         }
@@ -55,9 +54,17 @@ class MeetAdmin extends Component {
           .then(res => connect.send("VKWebAppSendPayload", {"group_id": 189366357, "payload": {"approve": mes}}));
           this.setState({ disabled: true })
           this.api.DeApprove({
-            id: fetchedUser.id,
             meet: meet.id
           }).then( e => onStoryChange('admin', 'meets') )
+        }
+        const Deny = e => {
+            const mes = `Ваша петиция <<${meet.name}>> отклонена модератором.&${meet.ownerid}`;
+            fetch('https://cors-anywhere.herokuapp.com/https://groovy-apricot.glitch.me/', { method: 'GET' })
+                .then(res => connect.send("VKWebAppSendPayload", {"group_id": 189366357, "payload": {"approve": mes}}));
+            this.setState({ disabled: true })
+            this.api.Deny({
+                meet: meet.id
+            }).then( e => onStoryChange('admin', 'meets') )
         }
         return (
             <Panel id={id}>
@@ -82,7 +89,9 @@ class MeetAdmin extends Component {
                               <Button size="l" disabled={this.state.disabled} stretched style={{ marginRight: 8 }}
                               onClick={ () => approve() }>{this.state.disabled ? <Spinner/> : 'Принять'}</Button>
                               : <Button size="l" disabled={this.state.disabled} stretched style={{ marginRight: 8 }}
-                              onClick={ () => deApprove() }>{this.state.disabled ? <Spinner/> : 'ОТКЛОНИТЬ НАХУЙ'} </Button>
+                              onClick={ () => deApprove() }>{this.state.disabled ? <Spinner/> : 'Скрыть от пользователей'} </Button>
+
+
                             }
                     </Div>
                 </Group>

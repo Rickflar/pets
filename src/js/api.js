@@ -46,18 +46,10 @@ export default class API {
   }
 
   async POSTGeoPosition(meet) {
-    let response = await this.send('POST', 'GeoPosition', meet);
-
-    dd('API: ', 'POSTGeoPosition', response);
-
-    return response;
+    return await this.send('POST', 'GeoPosition', meet);
   }
   async GetGeoPosition(location) {
-    let response = await this.send('GET', `GeoPosition?meet=${location.meet}`, null);
-
-    dd('API: ', 'GetGeoPosition', response);
-
-    return response;
+    return await this.send('GET', `GeoPosition?meet=${location.meet}`, null);
   }
   async GetGroupInfo() {
     return await this.send('GET', `GetGroupInfo`, null);
@@ -202,5 +194,10 @@ export default class API {
   async DeApprove(data) {
 
     return await this.send('POST', `admin/DeApprove`, data);
+  }
+
+  async Deny(data){
+
+    return await this.send('POST', `/admin/DenyMeet`, data);
   }
 }
