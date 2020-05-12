@@ -34,7 +34,7 @@ class Meet extends Component {
     const { id, onStoryChange, openDoneSnackbar, setParentState, activeStory } = this.props;
     const { meet, disabled } = this.state;
     var meetMembers = shortNumber(meet.members_amount)
-    const start_date = meet.start.split('-').reverse().join('-')
+    const stop_date = meet.finish.split('-').reverse().join('-')
     const backgroundImage = `url(${meet.photo})`;
     var link = meet.ownerid > 0 ? `https://vk.com/id${meet.ownerid}` : `https://vk.com/club${-meet.ownerid}`
 
