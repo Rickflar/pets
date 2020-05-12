@@ -14,7 +14,7 @@ class Success extends Component {
 
         return (
             <Panel id={id}>
-                <PanelHeader>Успех</PanelHeader>
+                <PanelHeader>Группа успешно добавлена</PanelHeader>
                 <Placeholder
                   icon={<Icon56CheckCircleOutline id='success'/>}
                   action={
@@ -27,7 +27,7 @@ class Success extends Component {
                     }
                   stretched
                 >
-             Сервис успешно добавлен в сообщество, откройте сервис из него
+             Сервис успешно добавлен в сообщество, чтобы создать петицию от имени сообщества - откройте сервис по кнопке в сообществе
              </Placeholder>
             </Panel>
         );
