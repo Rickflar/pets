@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Panel, PanelHeader, PanelHeaderButton, PullToRefresh } from '@vkontakte/vkui';
-import { getMessage } from '../js/helpers';
+import React, {Component} from 'react';
+import {Panel, PanelHeader, PanelHeaderButton, PullToRefresh} from '@vkontakte/vkui';
+import {getMessage} from '../js/helpers';
 import MeetList from '../components/MeetList';
 
 import Icon28UsersOutline from '@vkontakte/icons/dist/28/users_outline';
@@ -17,24 +17,24 @@ class Home extends Component {
         };
 
         this.onRefresh = () => {
-            this.setState({ fetching: true });
+            this.setState({fetching: true});
             setTimeout(() => {
                 this.props.getMeets();
-                this.setState({ fetching: false });
+                this.setState({fetching: false});
             }, 500);  // сука ненавижу этот PTR, почему он не может нормально работать блять
         }
         this.api = this.props.api;
     }
 
     render() {
-        const { id, setParentState } = this.props;
+        const {id, setParentState} = this.props;
         return (
             <Panel id={id}>
                 <PanelHeader left={
                     <PanelHeaderButton onClick={() => setParentState({
                         activePanel: 'comm'
                     })}>
-                        <Icon28UsersOutline width={24} height={24} />
+                        <Icon28UsersOutline width={24} height={24}/>
                     </PanelHeaderButton>
                 }>{getMessage('home_panel_title')}</PanelHeader>
 
