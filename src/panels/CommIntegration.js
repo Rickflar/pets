@@ -30,7 +30,7 @@ class CommIntegration extends Component {
            action={<Button size="l" onClick={() => connect.send("VKWebAppAddToCommunity", {})} level="primary">Добавить в сообщество</Button>}
            stretched
          >
-           Вы можете установить сервис в сообщество, тыры пыры, что-то ещё
+           Вы можете установить сервис в сообщество и создавать петиции от его имени
          </Placeholder>
             </Panel>
         );
