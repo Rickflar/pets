@@ -53,30 +53,18 @@ class MeetAdmin extends Component {
         var link = 'https://vk.com/id' + meet.ownerid
 
         const approve = e => {
-            const mes = `Ваша петиция <<${meet.name}>> прошла модерацию.&${meet.ownerid}`;
-            fetch('https://cors-anywhere.herokuapp.com/https://groovy-apricot.glitch.me/', {method: 'GET'})
-                .then(res => console.log(200) & connect.send("VKWebAppSendPayload", {
-                    "group_id": 189366357,
-                    "payload": {"approve": mes}
-                }));
             this.setState({disabled: true})
             this.api.Approve({
                 meet: meet.id
             }).then(e => onStoryChange('admin', 'meets'))
         }
         const deApprove = e => {
-            const mes = `Ваша петиция <<${meet.name}>> отклонена модератором.&${meet.ownerid}`;
-            fetch('https://cors-anywhere.herokuapp.com/https://groovy-apricot.glitch.me/', {method: 'GET'})
-                .then(res => connect.send("VKWebAppSendPayload", {"group_id": 189366357, "payload": {"approve": mes}}));
             this.setState({disabled: true})
             this.api.DeApprove({
                 meet: meet.id
             }).then(e => onStoryChange('admin', 'meets'))
         }
         const Deny = e => {
-            const mes = `Ваша петиция <<${meet.name}>> отклонена модератором.&${meet.ownerid}`;
-            fetch('https://cors-anywhere.herokuapp.com/https://groovy-apricot.glitch.me/', {method: 'GET'})
-                .then(res => connect.send("VKWebAppSendPayload", {"group_id": 189366357, "payload": {"approve": mes}}));
             this.setState({disabled: true})
             this.api.Deny({
                 meet: meet.id
