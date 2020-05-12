@@ -206,7 +206,7 @@ class App extends React.Component {
 	makeStory = async (id) => {
 		let meet = await this.api.GetMeet(id);
 		let image = 'data:image/png;base64,' + meet.photo;
-		let url = `https://vk.com/app7217332#${id/*this.state.currentMeetId*/}`
+		let url = `https://vk.com/app7217332#${id}`
 		await connect.send("VKWebAppShowStoryBox", {
 			"background_type": "image", "locked": true, "blob": image, "attachment": {
 				"text": "go_to",
@@ -218,7 +218,9 @@ class App extends React.Component {
 					"sticker_type": "native",
 					"sticker": {
 						"action_type": "text",
-						"text": meet.name
+						"text": meet.name,
+						"background_style": "solid",
+						"selection_color": "#ffffff"
 					}
 				}
 			]
