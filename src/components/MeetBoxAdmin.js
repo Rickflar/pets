@@ -17,6 +17,13 @@ class MeetBoxAdmin extends Component {
         });
     }
 
+    Deny = () => {
+        this.setState({disabled: true})
+        this.api.Deny({
+            meet: meet.id
+        });
+    }
+
     openActionSheet = (e) => {
       e.stopPropagation()
       const { setParentState/*, api, fetchedUser, meet */} = this.props;
@@ -34,8 +41,8 @@ class MeetBoxAdmin extends Component {
             <ActionSheetItem onClick={ this.goMeet } autoclose>
               Перейти на страницу петиции
             </ActionSheetItem>
-            <ActionSheetItem autoclose>
-              Поделиться в истории
+            <ActionSheetItem onClick={ this.Deny} autoclose>
+              Отклонить
             </ActionSheetItem>
             {IS_PLATFORM_IOS && <ActionSheetItem autoclose theme="cancel">Отменить</ActionSheetItem>}
           </ActionSheet>,
