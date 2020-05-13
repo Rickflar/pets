@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Panel, PanelHeader } from '@vkontakte/vkui';
-import { getMessage } from '../js/helpers';
+import React, {Component} from 'react';
+import {Panel, PanelHeader} from '@vkontakte/vkui';
+import {getMessage} from '../js/helpers';
 import MeetListAdmin from '../components/MeetListAdmin';
 
 import '@vkontakte/vkui/dist/vkui.css';
@@ -16,7 +16,7 @@ class AdminPage extends Component {
     }
 
     render() {
-        const { id, setParentState } = this.props;
+        const {id, setParentState} = this.props;
         return (
             <Panel id={id}>
                 <PanelHeader>{getMessage('admin_panel_title')}</PanelHeader>

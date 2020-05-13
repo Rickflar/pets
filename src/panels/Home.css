@@ -18,12 +18,14 @@
 
 
 @font-face {
-  font-family: "SF Display";
-  font-weight: 400;
-  src: url("https://sf.abarba.me/SF-UI-Display-Regular.otf");
+    font-family: "SF Display";
+    font-weight: 400;
+    src: url("https://sf.abarba.me/SF-UI-Display-Regular.otf");
 }
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap&subset=cyrillic');*/
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap&subset=cyrillic');
+
 
 #success {
-  color: rgb(153,200,137);
+    color: rgb(153, 200, 137);
 }

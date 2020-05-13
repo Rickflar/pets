@@ -17,25 +17,25 @@ class MeetBoxAdmin extends Component {
         });
     }
 
+    Deny = () => {
+        this.setState({disabled: true})
+        this.api.Deny({
+            meet: meet.id
+        });
+    }
+
     openActionSheet = (e) => {
       e.stopPropagation()
       const { setParentState/*, api, fetchedUser, meet */} = this.props;
 
-    /*  const removeMeetMember = e => {
-      api.RemoveMeetMember({
-          id: fetchedUser.id,
-          meet: meet.id
-        })
-      }
-*/
       setParentState({
           popout:
           <ActionSheet onClose={() => setParentState({ popout: null })}>
             <ActionSheetItem onClick={ this.goMeet } autoclose>
               Перейти на страницу петиции
             </ActionSheetItem>
-            <ActionSheetItem autoclose>
-              Поделиться в истории
+            <ActionSheetItem onClick={ this.Deny} autoclose>
+              Отклонить
             </ActionSheetItem>
             {IS_PLATFORM_IOS && <ActionSheetItem autoclose theme="cancel">Отменить</ActionSheetItem>}
           </ActionSheet>,
@@ -60,7 +60,6 @@ class MeetBoxAdmin extends Component {
                     :   <Button level="primary">Не рассмотрен</Button>
                   }
                     <Div className="MeetMembers">{ meetMembers }</Div>
-                {/*    <Link id='link' onClick={e => e.stopPropagation()} target="_blank" href="https://vk.me/join/AJQ1d2apLRT8GMtyuXFrAkqD"><Icon28Messages/></Link>*/}
                 </Div>
             </Div>
         )
