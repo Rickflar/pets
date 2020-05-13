@@ -19,4 +19,4 @@ mVKMiniAppsScrollHelper(root);
 // Подробнее про сервис воркеры можно почитать тут — https://vk.cc/8MHpmT
 // registerServiceWorker();
 
-ReactDOM.render(<App />, root);
+ReactDOM.render(<App/>, root);

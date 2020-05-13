@@ -1,7 +1,7 @@
-import { messages } from "./messages";
+import {messages} from "./messages";
 import React from 'react';
 
-import { Alert } from '@vkontakte/vkui';
+import {Alert} from '@vkontakte/vkui';
 // import connect from '@vkontakte/vk-connect';
 
 export const isDev = (window.location.hash === '#debug') ? true : false;
@@ -61,33 +61,33 @@ export const showAlert = (setState, title, message, actions) => {
         loader: null,
         disable: false,
         popout: <Alert
-                    actionsLayout="vertical"
-                    actions={actions}
-                    onClose={ () => {
-                        setState({ popout: null })
-                    }}
-                >
-                    { title ? <h2>{ title }</h2> : <h2>{ getMessage('oops') }</h2> }
-                    <p>{ message || getMessage('wtf') }</p>
-                </Alert>
+            actionsLayout="vertical"
+            actions={actions}
+            onClose={() => {
+                setState({popout: null})
+            }}
+        >
+            {title ? <h2>{title}</h2> : <h2>{getMessage('oops')}</h2>}
+            <p>{message || getMessage('wtf')}</p>
+        </Alert>
     });
 }
 
 export const formatNumber = (number) => {
-     if (number === null) return 0;
-  return `${number}`.replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
+    if (number === null) return 0;
+    return `${number}`.replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
 };
 const declOfNum = (number, titles) => {
-let cases = [2, 0, 1, 1, 1, 2];
-return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
+    let cases = [2, 0, 1, 1, 1, 2];
+    return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
 }
 
 export const shortNumber = count => {
-  if(count > 1000){
-    return formatNumber(Math.floor(count/1000)) + 'K участников'
-  } else if(count > 0){
-    return `${count} ${declOfNum(count, ["участник", "участника", "участников"])}` ;
-  } else return 'Участников нет'
+    if (count > 1000) {
+        return formatNumber(Math.floor(count / 1000)) + 'K участников'
+    } else if (count > 0) {
+        return `${count} ${declOfNum(count, ["участник", "участника", "участников"])}`;
+    } else return 'Участников нет'
 }
 
 export const dd = (...m) => {

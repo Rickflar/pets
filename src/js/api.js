@@ -1,206 +1,210 @@
 import axios from 'axios';
-import { dd } from './helpers';
+import {dd} from './helpers';
 
 
 const API_URL = 'https://vargasoff.ru:8000/';
 
-const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
-  const byteCharacters = atob(b64Data);
-  const byteArrays = [];
+const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
 
-  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-    const slice = byteCharacters.slice(offset, offset + sliceSize);
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        const slice = byteCharacters.slice(offset, offset + sliceSize);
 
-    const byteNumbers = new Array(slice.length);
-    for (let i = 0; i < slice.length; i++) {
-      byteNumbers[i] = slice.charCodeAt(i);
+        const byteNumbers = new Array(slice.length);
+        for (let i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        const byteArray = new Uint8Array(byteNumbers);
+        byteArrays.push(byteArray);
     }
 
-    const byteArray = new Uint8Array(byteNumbers);
-    byteArrays.push(byteArray);
-  }
-
-  const blob = new Blob(byteArrays, {type: contentType});
-  return blob;
+    return new Blob(byteArrays, {type: contentType});
 }
 
 axios.defaults.headers.common = {
-  Accept: "application/json, text/plain, */*"
+    Accept: "application/json, text/plain, */*"
 }
 
 export default class API {
 
-  constructor() {
-    dd('API: ', 'init');
-  }
+    constructor() {
+        dd('API: ', 'init');
+    }
 
-  async send(method = 'GET', action, data = {}) {
-    const response = await axios({
-      method,
-      url: `${API_URL}${action}`,
-      data
-    }).catch(error => {
-      console.error('Error API:', error);
-    });
-    return response ? response.data : [];
-  }
+    async send(method = 'GET', action, data = {}) {
+        const response = await axios({
+            method,
+            url: `${API_URL}${action}`,
+            data
+        }).catch(error => {
+            console.error('Error API:', error);
+        });
+        return response ? response.data : [];
+    }
 
-  async POSTGeoPosition(meet) {
-    let response = await this.send('POST', 'GeoPosition', meet);
+    async POSTGeoPosition(meet) {
+        return await this.send('POST', 'GeoPosition', meet);
+    }
 
-    dd('API: ', 'POSTGeoPosition', response);
+    async GetGeoPosition(location) {
+        return await this.send('GET', `GeoPosition?meet=${location.meet}`, null);
+    }
 
-    return response;
-  }
-  async GetGeoPosition(location) {
-    let response = await this.send('GET', `GeoPosition?meet=${location.meet}`, null);
+    async GetGroupInfo() {
+        return await this.send('GET', `GetGroupInfo`, null);
+    }
 
-    dd('API: ', 'GetGeoPosition', response);
+    async AddMeet(meet) {
 
-    return response;
-  }
-  async GetGroupInfo() {
-    return await this.send('GET', `GetGroupInfo`, null);
-  }
-  async AddMeet(meet) {
-    
-    return await this.send('POST', 'AddMeet', meet);
-  }
-  async IsFirst(id) {
+        return await this.send('POST', 'AddMeet', meet);
+    }
 
-    return await this.send('GET', `IsFirst`, null);
-  }
-  async getStory(meet) {
-    
-    return await this.send('GET', `getStory?meet=${meet}`, null);
-  }
- 
-  async GetMeets() {
-    const meets = await this.send('GET', `GetMeets`, null);
+    async IsFirst() {
 
-    if (!meets.failed) {
-      meets.forEach(e => {
-        const reader = new FileReader();
-        const blob  = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
-        reader.readAsDataURL(blob);
-        reader.onloadend = function () {
-          e.photo = reader.result;
-        }
-      }
-      );
-      return meets.reverse();
-    } else return [];
-  }
-  async GetMeet(meetId) {
-    const meet = await this.send('GET', `GetMeet?meet=${meetId}`, null);
+        return await this.send('GET', `IsFirst`, null);
+    }
 
-    dd('API: ', 'GetMeet', meet.replace(`b'`, '').replace(`'`, ''));
+    async GetMeets() {
+        const meets = await this.send('GET', `GetMeets`, null);
 
-    return meet.replace(`b'`, '').replace(`'`, '');
-  }
-  async GetAllMeets() {
-    const allMeets = await this.send('GET', `admin/GetAllMeets`, null);
-    dd('API: ', 'GetAllMeets', allMeets);
+        if (!meets.failed) {
+            meets.forEach(e => {
+                    const reader = new FileReader();
+                    const blob = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function () {
+                        e.photo = reader.result;
+                    }
+                }
+            );
+            return meets.reverse();
+        } else return [];
+    }
 
-    if (!allMeets.failed) {
-      allMeets.forEach(e =>
-        e.photo = e.photo.replace(`b'`, '').replace(`'`, '')
-      );
-      return allMeets.reverse();
-    } else return [];
+    async GetMeet(meetId) {
+        const meet = await this.send('GET', `GetMeet?meet=${meetId}`, null);
 
-  }
-  async GetExpiredUserMeets() {
-    const expireduserMeets = await this.send('GET', `GetExpiredUserMeets`, null);
-    dd('API: ', 'GetExpiredUserMeets', expireduserMeets);
+        dd('API: ', 'GetMeet', meet.replace(`b'`, '').replace(`'`, ''));
 
-    if (!expireduserMeets.failed) {
-      expireduserMeets.forEach(e =>{
-        const reader = new FileReader();
-        const blob  = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
-        reader.readAsDataURL(blob);
-        reader.onloadend = function () {
-          e.photo = reader.result;
-        }
-      }
-      );
-      return expireduserMeets.reverse();
-    } else return [];
+        return meet.replace(`b'`, '').replace(`'`, '');
+    }
 
-  }
-  async GetOwneredMeets() {
-    const ownereduserMeets = await this.send('GET', `GetOwneredMeets`, null);
-    dd('API: ', 'GetOwneredMeets', ownereduserMeets);
+    async GetAllMeets() {
+        const allMeets = await this.send('GET', `admin/GetAllMeets`, null);
+        dd('API: ', 'GetAllMeets', allMeets);
 
-    if (!ownereduserMeets.failed) {
-      ownereduserMeets.forEach(e =>{
-        const reader = new FileReader();
-        const blob  = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
-        reader.readAsDataURL(blob);
-        reader.onloadend = function () {
-          e.photo = reader.result;
-        }
-      }
-      );
-      return ownereduserMeets.reverse();
-    } else return [];
+        if (!allMeets.failed) {
+            allMeets.forEach(e =>
+                e.photo = e.photo.replace(`b'`, '').replace(`'`, '')
+            );
+            return allMeets.reverse();
+        } else return [];
 
-  }
-  async RateComment(data) {
+    }
 
-    return await this.send('POST', 'RateComment', data);
-  }
-  async GetUserMeets() {
-    const userMeets = await this.send('GET', `GetUserMeets`, null);
-    dd('API: ', 'GetUserMeets', userMeets);
+    async GetExpiredUserMeets() {
+        const expireduserMeets = await this.send('GET', `GetExpiredUserMeets`, null);
+        dd('API: ', 'GetExpiredUserMeets', expireduserMeets);
 
-    if (!userMeets.failed) {
-      userMeets.forEach(e =>{
-        const reader = new FileReader();
-        const blob  = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
-        reader.readAsDataURL(blob);
-        reader.onloadend = function () {
-          e.photo = reader.result;
-        }
-      }
-      );
-      return userMeets.reverse();
-    } else return [];
+        if (!expireduserMeets.failed) {
+            expireduserMeets.forEach(e => {
+                    const reader = new FileReader();
+                    const blob = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function () {
+                        e.photo = reader.result;
+                    }
+                }
+            );
+            return expireduserMeets.reverse();
+        } else return [];
 
-  }
+    }
 
-  async AddMeetMember(data) {
+    async GetOwneredMeets() {
+        const ownereduserMeets = await this.send('GET', `GetOwneredMeets`, null);
+        dd('API: ', 'GetOwneredMeets', ownereduserMeets);
 
-    return await this.send('POST', 'AddMeetMember', data);
-  }
-  async RemoveMeetMember(data) {
+        if (!ownereduserMeets.failed) {
+            ownereduserMeets.forEach(e => {
+                    const reader = new FileReader();
+                    const blob = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function () {
+                        e.photo = reader.result;
+                    }
+                }
+            );
+            return ownereduserMeets.reverse();
+        } else return [];
 
-    return await this.send('POST', `RemoveMeetMember`, data);
-  }
+    }
 
-  async AddComment(data) {
-   
-    return await this.send('POST', `AddComment`, data);
-  }
+    async RateComment(data) {
 
-  async GetMeetComments(meet) {
+        return await this.send('POST', 'RateComment', data);
+    }
 
-    return await this.send('GET', `GetMeetComments?meet=${meet}`, null);
+    async GetUserMeets() {
+        const userMeets = await this.send('GET', `GetUserMeets`, null);
+        dd('API: ', 'GetUserMeets', userMeets);
 
-  }
+        if (!userMeets.failed) {
+            userMeets.forEach(e => {
+                    const reader = new FileReader();
+                    const blob = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function () {
+                        e.photo = reader.result;
+                    }
+                }
+            );
+            return userMeets.reverse();
+        } else return [];
 
-  async RemoveComment(data) {
-    
-    return await this.send('POST', `RemoveComment`, data);
-  }
+    }
 
-  async Approve(data) {
+    async AddMeetMember(data) {
 
-    return await this.send('POST', `admin/Approve`, data);
+        return await this.send('POST', 'AddMeetMember', data);
+    }
 
-  }
-  async DeApprove(data) {
+    async RemoveMeetMember(data) {
 
-    return await this.send('POST', `admin/DeApprove`, data);
-  }
+        return await this.send('POST', `RemoveMeetMember`, data);
+    }
+
+    async AddComment(data) {
+
+        return await this.send('POST', `AddComment`, data);
+    }
+
+    async GetMeetComments(meet) {
+
+        return await this.send('GET', `GetMeetComments?meet=${meet}`, null);
+
+    }
+
+    async RemoveComment(data) {
+
+        return await this.send('POST', `RemoveComment`, data);
+    }
+
+    async Approve(data) {
+
+        return await this.send('POST', `admin/Approve`, data);
+
+    }
+
+    async DeApprove(data) {
+
+        return await this.send('POST', `admin/DeApprove`, data);
+    }
+
+    async Deny(data) {
+
+        return await this.send('POST', `/admin/DenyMeet`, data);
+    }
 }
