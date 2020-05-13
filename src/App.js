@@ -140,10 +140,8 @@ class App extends React.Component {
 				break;
 			case 'VKWebAppAllowMessagesFromGroupResult':
 				this.setState({ noty: e.detail.data.result });
-				//	console.log(this.state)
 				break;
 			case 'VKWebAppAddToCommunityResult':
-				//	console.log(e.detail.data.group_id);
 				this.setState({
 					activePanel: 'succ'
 				});
@@ -186,10 +184,8 @@ class App extends React.Component {
 
 	checkRoute = async e => {
 		let route = window.location.hash.replace('#', '');
-		//	console.log(route);
 		if (route > 0) {
 			const meet = await this.api.GetMeet(route);
-			console.log(meet[0]);
 			if (meet[0]) {
 				this.setState({
 					meet: meet[0],
@@ -204,17 +200,26 @@ class App extends React.Component {
 		} else window.showOfflinePage(true);
 	}
 	makeStory = async (id) => {
-		console.log('makeStory')
-		let story = await this.api.getStory(id);
-		story = 'data:image/png;base64,' + story.image.replace(`b'`, '').replace(`'`, '');
-		console.log(story);
-		let url = `https://vk.com/app7217332#${id/*this.state.currentMeetId*/}`
+		let meet = await this.api.GetMeet(id);
+		let image = 'data:image/png;base64,' + meet.photo;
+		let url = `https://vk.com/app7217332#${id}`
 		await connect.send("VKWebAppShowStoryBox", {
-			"background_type": "image", "locked": true, "blob": story, "attachment": {
+			"background_type": "image", "locked": true, "blob": image, "attachment": {
 				"text": "go_to",
 				"type": "url",
 				"url": url
-			}
+			},
+			"stickers": [
+				{
+					"sticker_type": "native",
+					"sticker": {
+						"action_type": "text",
+						"text": meet.name,
+						"background_style": "solid",
+						"selection_color": "#ffffff"
+					}
+				}
+			]
 		});
 	}
 
@@ -283,14 +288,13 @@ class App extends React.Component {
 		this.setState({ comments });
 	}
 	addUser = async (user) => { // добавить данные юзера в базу
-		const isFirst = await this.api.IsFirst(user.id);
+		const isFirst = await this.api.IsFirst();
 		const clubInfo = await this.api.GetGroupInfo();
 		if (clubInfo.name) {
 			this.setState({
 				isCurrentGroupAdmin: true,
 				currentGroupInfo: clubInfo
 			});
-			console.log('isCurrentGroupAdmin true');
 		}
 		if (isFirst) { // показываем онбординг, если юзер зашёл первый раз
 			this.onStoryChange('onboarding', 'onboarding');} 
@@ -338,7 +342,6 @@ class App extends React.Component {
 			}
 			return response;
 		}
-		//	console.log(history())
 		/*	const history =
 				activePanel === 'meet' ||
 				activePanel === 'comm' || ДОРАБОТАТЬ ПЕРЕРАБОТАТЬ В КОРНЕ
