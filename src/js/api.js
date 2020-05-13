@@ -195,7 +195,6 @@ export default class API {
     async Approve(data) {
 
         return await this.send('POST', `admin/Approve`, data);
-
     }
 
     async DeApprove(data) {

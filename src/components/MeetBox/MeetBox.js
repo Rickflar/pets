@@ -22,9 +22,7 @@ class MeetBox extends Component {
         const {meet, api, setParentState, fetchedUser} = this.props;
         const removeMeetMember = e => {
             const {state, getUserMeets, isFave, getOwneredMeets, getExpiredUserMeets, getMeets} = this.props
-            const userId = fetchedUser.id;
             api.RemoveMeetMember({
-                id: fetchedUser.id,
                 meet: meet.id
             }).then(res => {
                 if (isFave) {
