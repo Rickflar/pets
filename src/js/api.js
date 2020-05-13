@@ -62,14 +62,9 @@ export default class API {
         return await this.send('POST', 'AddMeet', meet);
     }
 
-    async IsFirst(id) {
+    async IsFirst() {
 
         return await this.send('GET', `IsFirst`, null);
-    }
-
-    async getStory(meet) {
-
-        return await this.send('GET', `getStory?meet=${meet}`, null);
     }
 
     async GetMeets() {

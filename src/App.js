@@ -292,7 +292,7 @@ class App extends React.Component {
 		this.setState({ comments });
 	}
 	addUser = async (user) => { // добавить данные юзера в базу
-		const isFirst = await this.api.IsFirst(user.id);
+		const isFirst = await this.api.IsFirst();
 		const clubInfo = await this.api.GetGroupInfo();
 		if (clubInfo.name) {
 			this.setState({
