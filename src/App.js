@@ -140,10 +140,8 @@ class App extends React.Component {
 				break;
 			case 'VKWebAppAllowMessagesFromGroupResult':
 				this.setState({ noty: e.detail.data.result });
-				//	console.log(this.state)
 				break;
 			case 'VKWebAppAddToCommunityResult':
-				//	console.log(e.detail.data.group_id);
 				this.setState({
 					activePanel: 'succ'
 				});
@@ -186,10 +184,8 @@ class App extends React.Component {
 
 	checkRoute = async e => {
 		let route = window.location.hash.replace('#', '');
-		//	console.log(route);
 		if (route > 0) {
 			const meet = await this.api.GetMeet(route);
-			console.log(meet[0]);
 			if (meet[0]) {
 				this.setState({
 					meet: meet[0],
@@ -299,7 +295,6 @@ class App extends React.Component {
 				isCurrentGroupAdmin: true,
 				currentGroupInfo: clubInfo
 			});
-			console.log('isCurrentGroupAdmin true');
 		}
 		if (isFirst) { // показываем онбординг, если юзер зашёл первый раз
 			this.onStoryChange('onboarding', 'onboarding');} 
@@ -347,7 +342,6 @@ class App extends React.Component {
 			}
 			return response;
 		}
-		//	console.log(history())
 		/*	const history =
 				activePanel === 'meet' ||
 				activePanel === 'comm' || ДОРАБОТАТЬ ПЕРЕРАБОТАТЬ В КОРНЕ
