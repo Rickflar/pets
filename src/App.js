@@ -206,7 +206,7 @@ class App extends React.Component {
 		let image = 'data:image/png;base64,' + meet.photo;
 		let url = `https://vk.com/app7217332#${id}`
 		await connect.send("VKWebAppShowStoryBox", {
-			"background_type": "image", "locked": true, "blob": image, "attachment": {
+			"background_type": "image", "locked": false, "blob": image, "attachment": {
 				"text": "go_to",
 				"type": "url",
 				"url": url
