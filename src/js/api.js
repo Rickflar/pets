@@ -74,7 +74,7 @@ export default class API {
                     const reader = new FileReader();
                     const blob = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
                     reader.readAsDataURL(blob);
-                    reader.onloadend = function () {
+                    reader.onloadend = () => {
                         e.photo = reader.result;
                     }
                 }
@@ -89,8 +89,9 @@ export default class API {
         const reader = new FileReader();
         const blob = b64toBlob(meet.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
         reader.readAsDataURL(blob);
-        reader.onloadend = function () {
-            meet.photo = reader.result;}
+        reader.onloadend = () => {
+            meet.photo = reader.result;
+        };
         return meet;
     }
 
@@ -116,7 +117,7 @@ export default class API {
                     const reader = new FileReader();
                     const blob = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
                     reader.readAsDataURL(blob);
-                    reader.onloadend = function () {
+                    reader.onloadend = () => {
                         e.photo = reader.result;
                     }
                 }
@@ -135,7 +136,7 @@ export default class API {
                     const reader = new FileReader();
                     const blob = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
                     reader.readAsDataURL(blob);
-                    reader.onloadend = function () {
+                    reader.onloadend = () => {
                         e.photo = reader.result;
                     }
                 }
@@ -159,7 +160,7 @@ export default class API {
                     const reader = new FileReader();
                     const blob = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
                     reader.readAsDataURL(blob);
-                    reader.onloadend = function () {
+                    reader.onloadend = () => {
                         e.photo = reader.result;
                     }
                 }
