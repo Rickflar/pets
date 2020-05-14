@@ -86,9 +86,9 @@ export default class API {
     async GetMeet(meetId) {
         const meet = await this.send('GET', `GetMeet?meet=${meetId}`, null);
 
-        dd('API: ', 'GetMeet', meet.replace(`b'`, '').replace(`'`, ''));
+        dd('API: ', 'GetMeet', meet.photo.replace(`b'`, '').replace(`'`, ''));
 
-        return meet.replace(`b'`, '').replace(`'`, '');
+        return meet.photo.replace(`b'`, '').replace(`'`, '');
     }
 
     async GetAllMeets() {
