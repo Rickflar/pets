@@ -202,36 +202,40 @@ class App extends React.Component {
 		} else window.showOfflinePage(true);
 	}
 	makeStory = async (id) => {
+		const textToImage = require('text-to-image');
 		let meet = await this.api.GetMeet(id);
 		let image = 'data:image/png;base64,' + meet.photo;
 		let url = `https://vk.com/app7217332#${id}`
-		connect.send("VKWebAppShowStoryBox", {
-			"background_type": "image", "locked": false, "blob": image, "attachment": {
-				"text": "go_to",
-				"type": "url",
-				"url": url
-			},
-			"stickers": [
-				{
-					"sticker_type": "native",
-					"sticker": {
-						"action_type": "text",
-						"action": {
-							"text": meet.name,
-							"background_style": "solid",
-							"selection_color": "#ffffff"
-						},
-					"transform": {
-						"translation_y": -0.3
+		textToImage.generate(meet.name).then(dataUri => {
+			console.log(dataUri)
+			connect.send("VKWebAppShowStoryBox", {
+				"background_type": "image", "locked": false, "blob": image, "attachment": {
+					"text": "go_to",
+					"type": "url",
+					"url": url
+				},
+				"stickers": [
+					{
+						"sticker_type": "renderable",
+						"sticker": {
+							"content_type": "image",
+							"blob": dataUri,
+							"transform": {
+								"relation_width": 0.55,
+								"gravity": "center_bottom",
+								"translation_y": -0.25
+							}
+						}
 					}
-					}
-				}
-			]
-		}).then(res => {
-		    console.log(res)
-        }).catch(err => {
-            console.error(err)
-        });
+				]
+
+			}).then(res => {
+				console.log(res)
+			}).catch(err => {
+				console.error(err)
+			});
+		});
+
 	}
 
 	openDoneSnackbar = e => {

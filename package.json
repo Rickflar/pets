@@ -46,6 +46,7 @@
     "react-native-app-intro-slider": "^3.0.0",
     "react-native-image-base64": "^0.1.4",
     "react-slick": "^0.25.2",
+    "text-to-image": "^2.3.0",
     "vk-stories": "^1.1.0"
   },
   "browserslist": [
