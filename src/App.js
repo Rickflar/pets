@@ -216,7 +216,12 @@ class App extends React.Component {
 							"sticker_type": "renderable",
 							"sticker": {
 								"content_type": "image",
-								"blob": dataUri
+								"blob": dataUri,
+								"transform": {
+									"relation_width": 0.55,
+									"gravity": "center_bottom",
+									"translation_y": -0.25
+								}
 							}
 						}
 					]
