@@ -51,7 +51,11 @@ class ComList extends Component {
             <ActionSheetItem onClick={() => removeComment(id)} autoclose mode="destructive">
               Удалить комментарий
             </ActionSheetItem>
-            <ActionSheetItem autoclose onClick={() => window.open(link, "_blank")}>
+            <ActionSheetItem
+                autoclose
+                href={link}
+                target='_blank'
+            >
               Страница ВК
             </ActionSheetItem>
             {IS_PLATFORM_IOS && <ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
