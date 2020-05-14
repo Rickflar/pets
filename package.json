@@ -1,7 +1,7 @@
 {
   "name": "vk-apps-meetings",
   "version": "1.0.0",
-  "homepage": "https://manaenckow.github.io/meets/",
+  "homepage": "./",
   "description": "",
   "main": "index.js",
   "scripts": {

@@ -114,7 +114,7 @@ class Meet extends Component {
                         <ActionSheetItem onClick={share} autoclose>
                             Поделиться на стене
                         </ActionSheetItem>
-                        {<ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
+                        { false && <ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
                             Поделиться в истории
                         </ActionSheetItem>
                         }
@@ -132,11 +132,14 @@ class Meet extends Component {
                         {IS_PLATFORM_IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
                     </PanelHeaderButton>}>Петиция</PanelHeader>
                 <Group header={<Header mode="secondary">Краткие сведения о петиции</Header>}>
-                    <MeetBox
-                        meet={meet}
-                        setParentState={null}
-                        style={{marginLeft: 12, marginRight: 12}}
-                    />
+                  <Div>
+                      <MeetBox
+                          onMeet
+                          meet={meet}
+                          setParentState={null}
+                          style={{marginLeft: 12, marginRight: 12}}
+                      />
+                  </Div>
                 </Group>
                 <Group separator="show" header={<Header mode="secondary">Описание петиции</Header>}>
                     <Div>

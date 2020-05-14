@@ -97,7 +97,7 @@ class App extends React.Component {
 
 		this.api = new API();
 		this.checkRoute();
-	}
+	};
 
 	componentDidMount() {
 		connect.subscribe(this.sub);
@@ -157,7 +157,7 @@ class App extends React.Component {
 			default:
 			// code
 		}
-	}
+	};
 	// TODO: Нужен history для навигации назад с других экранов и системной кнопки назад на ведре
 	onStoryChange = (story, panel) => {
 		//	connect.unsubscribe(this.sub);

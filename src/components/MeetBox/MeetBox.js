@@ -90,9 +90,15 @@ class MeetBox extends Component {
                             </div>
                         </div>
                     </div>
-                    <div style={{marginLeft: 'auto'}}>
-                        <Icon28MoreHorizontal onClick={(e) => this.openActionSheet(e)} fill={'var(--text_secondary)'}/>
-                    </div>
+                    {
+                        !this.props.onMeet &&
+                        <div style={{marginLeft: 'auto'}}>
+                            <Icon28MoreHorizontal
+                                onClick={(e) => this.openActionSheet(e)}
+                                fill={'var(--text_secondary)'}/>
+                        </div>
+
+                    }
                 </div>
             </div>
         )
