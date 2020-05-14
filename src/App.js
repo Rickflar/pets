@@ -200,14 +200,13 @@ class App extends React.Component {
 		if (window.navigator.onLine) {
 			window.showOfflinePage(false);
 		} else window.showOfflinePage(true);
-	}
+	};
 	makeStory = async (id) => {
 		const textToImage = require('text-to-image');
 		let meet = await this.api.GetMeet(id);
 		let image = 'data:image/png;base64,' + meet.photo;
 		let url = `https://vk.com/app7217332#${id}`
 		textToImage.generate(meet.name).then(dataUri => {
-			console.log(dataUri)
 			connect.send("VKWebAppShowStoryBox", {
 				"background_type": "image", "locked": false, "blob": image, "attachment": {
 					"text": "go_to",

@@ -114,17 +114,24 @@ class Meet extends Component {
                         <ActionSheetItem onClick={share} autoclose>
                             Поделиться на стене
                         </ActionSheetItem>
-                        { false && <ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
+                        <ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
                             Поделиться в истории
                         </ActionSheetItem>
+                        {
+                            IS_PLATFORM_IOS &&
+                        <ActionSheetItem
+                            autoclose
+                            mode="destructive"
+                        >
+                            Отменить
+                        </ActionSheetItem>
                         }
-                        {IS_PLATFORM_IOS && <ActionSheetItem autoclose theme="cancel">Отменить</ActionSheetItem>}
                     </ActionSheet>,
             });
-        }
+        };
         const share = e => {
             bridge.send("VKWebAppShowWallPostBox", {"message": `${meet.name}\n\n${meet.description}\n\n Примите участие в петиции по ссылке: https://vk.com/app7217332#${meet.id}`});
-        }
+        };
         return (
             <Panel id={id}>
                 <PanelHeader left={
