@@ -18,10 +18,11 @@ class MeetList extends Component {
                                         <MeetBox
                                             key={index}
                                             meet={meet}
+                                            {...this}
                                             makeStory={makeStory}
                                             getUserMeets={getUserMeets}
                                             setParentState={setParentState}
-                                            style={{marginTop: 12}}
+                                            style={{marginBottom: 12}}
                                         />
                                     ))
                             }

@@ -68,7 +68,7 @@ class MeetBox extends Component {
                          backgroundImage: `url(${meet.photo})`,
                      }}
                 />
-                <div className='newsDiv'>
+                <div className={this.props.state === 'bright_light' ? 'newsDiv shadowL' : 'newsDiv shadowD'}>
                     <div style={{minWidth: 0}}>
                         <div className='meetSubtitle' style={{color: 'var(--accent)'}}>
                             {meet.owner_name + " " + meet.owner_surname}

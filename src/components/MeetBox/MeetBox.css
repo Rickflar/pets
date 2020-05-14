@@ -12,14 +12,21 @@
     background: var(--pocket_white);
     border-radius: 0px 0px 10px 10px;
     color: var(--pocket_black);
-    -webkit-box-shadow: 0 25px 40px 0 #F5F5F5, 0 0 15px 0 rgba(0,0,0,.08);
-    box-shadow: 0 25px 40px 0 #F5F5F5, 0 0 15px 0 rgba(0,0,0,.08);
-    -moz-box-shadow: 0 25px 40px 0 #F5F5F5, 0 0 15px 0 rgba(0,0,0,.08);
     border: 1px solid var(--image_border);
     border-top: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.shadowD {
+
+}
+
+.shadowL {
+    -webkit-box-shadow: 0 25px 40px 0 #F5F5F5, 0 0 15px 0 rgba(0,0,0,.08);
+    box-shadow: 0 25px 40px 0 #F5F5F5, 0 0 15px 0 rgba(0,0,0,.08);
+    -moz-box-shadow: 0 25px 40px 0 #F5F5F5, 0 0 15px 0 rgba(0,0,0,.08);
 }
 
 .meetTitle{
