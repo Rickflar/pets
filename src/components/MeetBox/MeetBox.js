@@ -62,7 +62,9 @@ class MeetBox extends Component {
     render() {
         const {meet, restProps} = this.props;
         return (
-            <div onClick={this.goMeet} {...restProps}>
+            <div style={{
+                marginBottom: 10
+            }} onClick={this.goMeet} {...restProps}>
                 <div className='bigImage'
                      style={{
                          backgroundImage: `url(${meet.photo})`,
