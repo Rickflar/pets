@@ -220,7 +220,10 @@ class App extends React.Component {
 							"text": meet.name,
 							"background_style": "solid",
 							"selection_color": "#ffffff"
-						}
+						},
+					"transform": {
+						"translation_y": -0.3
+					}
 					}
 				}
 			]
