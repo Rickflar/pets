@@ -216,9 +216,11 @@ class App extends React.Component {
 					"sticker_type": "native",
 					"sticker": {
 						"action_type": "text",
-						"text": meet.name,
-						"background_style": "solid",
-						"selection_color": "#ffffff"
+						"action": {
+							"text": meet.name,
+							"background_style": "solid",
+							"selection_color": "#ffffff"
+						}
 					}
 				}
 			]
