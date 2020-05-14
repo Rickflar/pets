@@ -86,9 +86,12 @@ export default class API {
     async GetMeet(meetId) {
         const meet = await this.send('GET', `GetMeet?meet=${meetId}`, null);
 
-        dd('API: ', 'GetMeet', meet.photo.replace(`b'`, '').replace(`'`, ''));
-
-        return meet.photo.replace(`b'`, '').replace(`'`, '');
+        const reader = new FileReader();
+        const blob = b64toBlob(meet.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
+        reader.readAsDataURL(blob);
+        reader.onloadend = function () {
+            meet.photo = reader.result;}
+        return meet;
     }
 
     async GetAllMeets() {
