@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "deploy": "gh-pages -d build",
-    "minideploy": "vk-miniapps-deploy",
+    "m": "vk-miniapps-deploy",
     "start": "cross-env PORT=8080 react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",

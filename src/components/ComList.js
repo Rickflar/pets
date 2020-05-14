@@ -18,7 +18,7 @@ class ComList extends Component {
   }
 
   render() {
-    const { comments, setParentState, openErrorSnackbar, openDoneSnackbar, fetchedUser, isUserAdmin } = this.props;
+    const { comments, setParentState, openErrorSnackbar, openDoneSnackbar} = this.props;
     const { meet } = this.state;
     if (comments === false) {
       return <Div><Spinner /></Div>

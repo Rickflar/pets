@@ -84,7 +84,8 @@ export default class API {
     }
 
     async GetMeet(meetId) {
-        const meet = await this.send('GET', `GetMeet?meet=${meetId}`, null);
+        let meet = await this.send('GET', `GetMeet?meet=${meetId}`, null);
+        meet = meet[0];
         const reader = new FileReader();
         const blob = b64toBlob(meet.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
         reader.readAsDataURL(blob);

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Panel, PanelHeader, FixedLayout, Div, Tabs, TabsItem, Counter, HorizontalScroll} from '@vkontakte/vkui';
+import {Counter, Div, FixedLayout, HorizontalScroll, Panel, PanelHeader, Tabs, TabsItem} from '@vkontakte/vkui';
 import {getMessage} from '../js/helpers';
 import MeetList from '../components/MeetList';
 
@@ -23,7 +23,7 @@ class Favorite extends Component {
 
         return (
             <Panel id={id}>
-                <PanelHeader noShadow>{getMessage('favorite_panel_title')}</PanelHeader>
+                <PanelHeader>{getMessage('favorite_panel_title')}</PanelHeader>
                 <Div style={{marginBottom: 30}}/>
                 <FixedLayout vertical="top">
                     <Tabs theme="header" type="buttons">

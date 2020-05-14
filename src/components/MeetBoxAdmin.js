@@ -18,7 +18,7 @@ class MeetBoxAdmin extends Component {
     }
 
     Deny = () => {
-        const { meet, setParentState } = this.props;
+        const { meet } = this.props;
         this.setState({disabled: true})
         this.api.Deny({
             meet: meet

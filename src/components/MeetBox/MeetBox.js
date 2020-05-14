@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {IS_PLATFORM_IOS, ActionSheetItem, ActionSheet} from '@vkontakte/vkui/';
+import {ActionSheet, ActionSheetItem, IS_PLATFORM_IOS} from '@vkontakte/vkui/';
 
 import connect from '@vkontakte/vk-connect';
 
@@ -47,9 +47,9 @@ class MeetBox extends Component {
                         Перейти на страницу петиции
                     </ActionSheetItem>
                     {meet.ismember &&
-              <ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
-                Поделиться в истории
-            </ActionSheetItem>}
+                    <ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
+                        Поделиться в истории
+                    </ActionSheetItem>}
                     {meet.ismember &&
                     <ActionSheetItem onClick={() => removeMeetMember()} autoclose mode="destructive">
                         Отказаться от участия
@@ -60,7 +60,7 @@ class MeetBox extends Component {
     }
 
     render() {
-        const {meet, ...restProps} = this.props;
+        const {meet, restProps} = this.props;
         return (
             <div onClick={this.goMeet} {...restProps}>
                 <div className='bigImage'
