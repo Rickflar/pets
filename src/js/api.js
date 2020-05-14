@@ -74,7 +74,7 @@ export default class API {
                     const reader = new FileReader();
                     const blob = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
                     reader.readAsDataURL(blob);
-                    reader.onloadend = function () {
+                    reader.onloadend = () => {
                         e.photo = reader.result;
                     }
                 }
@@ -84,11 +84,15 @@ export default class API {
     }
 
     async GetMeet(meetId) {
-        const meet = await this.send('GET', `GetMeet?meet=${meetId}`, null);
-
-        dd('API: ', 'GetMeet', meet.replace(`b'`, '').replace(`'`, ''));
-
-        return meet.replace(`b'`, '').replace(`'`, '');
+        let meet = await this.send('GET', `GetMeet?meet=${meetId}`, null);
+        meet = meet[0];
+        const reader = new FileReader();
+        const blob = b64toBlob(meet.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
+        reader.readAsDataURL(blob);
+        reader.onloadend = () => {
+            meet.photo = reader.result;
+        };
+        return meet;
     }
 
     async GetAllMeets() {
@@ -113,7 +117,7 @@ export default class API {
                     const reader = new FileReader();
                     const blob = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
                     reader.readAsDataURL(blob);
-                    reader.onloadend = function () {
+                    reader.onloadend = () => {
                         e.photo = reader.result;
                     }
                 }
@@ -132,7 +136,7 @@ export default class API {
                     const reader = new FileReader();
                     const blob = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
                     reader.readAsDataURL(blob);
-                    reader.onloadend = function () {
+                    reader.onloadend = () => {
                         e.photo = reader.result;
                     }
                 }
@@ -156,7 +160,7 @@ export default class API {
                     const reader = new FileReader();
                     const blob = b64toBlob(e.photo.replace(`b'`, '').replace(`'`, ''), 'image/png');
                     reader.readAsDataURL(blob);
-                    reader.onloadend = function () {
+                    reader.onloadend = () => {
                         e.photo = reader.result;
                     }
                 }

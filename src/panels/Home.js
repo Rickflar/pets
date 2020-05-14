@@ -22,7 +22,7 @@ class Home extends Component {
                 this.props.getMeets();
                 this.setState({fetching: false});
             }, 500);  // сука ненавижу этот PTR, почему он не может нормально работать блять
-        }
+        };
         this.api = this.props.api;
     }
 

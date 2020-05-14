@@ -1,14 +1,24 @@
 import React, {Component} from 'react';
 import {
-    Panel, PanelHeaderButton, PanelHeader, ActionSheetItem, ActionSheet,
-    Div, Link, Spinner, Text, IS_PLATFORM_IOS, Group, Header, Separator, Button
+    ActionSheet,
+    ActionSheetItem,
+    Button,
+    Div,
+    Group,
+    Header,
+    IS_PLATFORM_IOS,
+    Panel,
+    PanelHeader,
+    PanelHeaderButton,
+    Spinner,
+    Text
 } from '@vkontakte/vkui';
 import MeetBox from '../components/MeetBox/MeetBox';
 import bridge from '@vkontakte/vk-bridge';
 import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 import ComList from '../components/ComList';
-import {shortNumber} from '../js/helpers';
+//import {shortNumber} from '../js/helpers';
 import '@vkontakte/vkui/dist/vkui.css';
 import './Home.css';
 
@@ -31,56 +41,56 @@ class Meet extends Component {
     }
 
     render() {
-        const {id, onStoryChange, openDoneSnackbar, setParentState, activeStory} = this.props;
+        const {id, onStoryChange, setParentState, activeStory} = this.props;
         const {meet, disabled} = this.state;
-        var meetMembers = shortNumber(meet.members_amount)
-        const stop_date = meet.finish.split('-').reverse().join('-')
-        const backgroundImage = `url(${meet.photo})`;
-        var link = meet.ownerid > 0 ? `https://vk.com/id${meet.ownerid}` : `https://vk.com/club${-meet.ownerid}`
+        //  var meetMembers = shortNumber(meet.members_amount)
+        //  const stop_date = meet.finish.split('-').reverse().join('-')
+        //  const backgroundImage = `url(${meet.photo})`;
+        // var link = meet.ownerid > 0 ? `https://vk.com/id${meet.ownerid}` : `https://vk.com/club${-meet.ownerid}`
 
-        const sub = e => {
-            bridge.unsubscribe(sub)
-            switch (e.detail.type) {
-                case 'VKWebAppGeodataResult':
-                    if (!this.state.flood) {
-                        if (!e.detail.data.available) {
-                            console.log(e.detail.data.available)
-                            this.props.openErrorSnackbar('Доступ к геолокации не был получен.');
-                            this.setState({disabled: false});
-                            return
-                        }
-                        this.api.POSTGeoPosition({
-                            lat: e.detail.data.lat,
-                            long: e.detail.data.long
-                        }).then(res => {
-                            this.api.GetGeoPosition({
-                                meet: this.props.state.meet.id
-                            }).then(res => {
-                                this.setState({flood: true})
-                                setTimeout(() => this.setState({flood: false}), 2000)
-                                if (res.failed) {
-                                    this.setState({disabled: false});
-                                    this.props.openErrorSnackbar(res.failed);
-                                } else if (res.status) {
-                                    openDoneSnackbar(res.status);
-                                    this.setState({disabled: false});
-                                }
-                            })
+        /* const sub = e => {
+             bridge.unsubscribe(sub)
+             switch (e.detail.type) {
+                 case 'VKWebAppGeodataResult':
+                     if (!this.state.flood) {
+                         if (!e.detail.data.available) {
+                             console.log(e.detail.data.available)
+                             this.props.openErrorSnackbar('Доступ к геолокации не был получен.');
+                             this.setState({disabled: false});
+                             return
+                         }
+                         this.api.POSTGeoPosition({
+                             lat: e.detail.data.lat,
+                             long: e.detail.data.long
+                         }).then(res => {
+                             this.api.GetGeoPosition({
+                                 meet: this.props.state.meet.id
+                             }).then(res => {
+                                 this.setState({flood: true})
+                                 setTimeout(() => this.setState({flood: false}), 2000)
+                                 if (res.failed) {
+                                     this.setState({disabled: false});
+                                     this.props.openErrorSnackbar(res.failed);
+                                 } else if (res.status) {
+                                     openDoneSnackbar(res.status);
+                                     this.setState({disabled: false});
+                                 }
+                             })
 
-                        })
-                    } else {
-                        this.setState({disabled: false});
-                        this.props.openErrorSnackbar('Не так часто');
-                    }
-                    break;
-                case 'VKWebAppGeodataFailed':
-                    this.props.openErrorSnackbar('Доступ к геолокации запрещён.');
-                    this.setState({disabled: false});
-                    break;
-                default:
-                // code
-            }
-        }
+                         })
+                     } else {
+                         this.setState({disabled: false});
+                         this.props.openErrorSnackbar('Не так часто');
+                     }
+                     break;
+                 case 'VKWebAppGeodataFailed':
+                     this.props.openErrorSnackbar('Доступ к геолокации запрещён.');
+                     this.setState({disabled: false});
+                     break;
+                 default:
+                 // code
+             }
+         }*/
 
         const paticipate = e => {
             this.setState({disabled: true})
@@ -104,17 +114,24 @@ class Meet extends Component {
                         <ActionSheetItem onClick={share} autoclose>
                             Поделиться на стене
                         </ActionSheetItem>
-                        {<ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
-              Поделиться в истории
-                </ActionSheetItem>
-               }
-                        {IS_PLATFORM_IOS && <ActionSheetItem autoclose theme="cancel">Отменить</ActionSheetItem>}
+                        <ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
+                            Поделиться в истории
+                        </ActionSheetItem>
+                        {
+                            IS_PLATFORM_IOS &&
+                        <ActionSheetItem
+                            autoclose
+                            mode="destructive"
+                        >
+                            Отменить
+                        </ActionSheetItem>
+                        }
                     </ActionSheet>,
             });
-        }
+        };
         const share = e => {
             bridge.send("VKWebAppShowWallPostBox", {"message": `${meet.name}\n\n${meet.description}\n\n Примите участие в петиции по ссылке: https://vk.com/app7217332#${meet.id}`});
-        }
+        };
         return (
             <Panel id={id}>
                 <PanelHeader left={
@@ -122,11 +139,14 @@ class Meet extends Component {
                         {IS_PLATFORM_IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
                     </PanelHeaderButton>}>Петиция</PanelHeader>
                 <Group header={<Header mode="secondary">Краткие сведения о петиции</Header>}>
-                    <MeetBox
-                        meet={meet}
-                        setParentState={null}
-                        style={{marginLeft: 12, marginRight: 12}}
-                    />
+                  <Div>
+                      <MeetBox
+                          onMeet
+                          meet={meet}
+                          setParentState={null}
+                          style={{marginLeft: 12, marginRight: 12}}
+                      />
+                  </Div>
                 </Group>
                 <Group separator="show" header={<Header mode="secondary">Описание петиции</Header>}>
                     <Div>

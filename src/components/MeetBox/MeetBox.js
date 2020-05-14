@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {IS_PLATFORM_IOS, ActionSheetItem, ActionSheet} from '@vkontakte/vkui/';
+import {ActionSheet, ActionSheetItem, IS_PLATFORM_IOS} from '@vkontakte/vkui/';
 
 import connect from '@vkontakte/vk-connect';
 
@@ -47,9 +47,9 @@ class MeetBox extends Component {
                         Перейти на страницу петиции
                     </ActionSheetItem>
                     {meet.ismember &&
-              <ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
-                Поделиться в истории
-            </ActionSheetItem>}
+                    <ActionSheetItem onClick={() => this.props.makeStory(meet.id)} autoclose>
+                        Поделиться в истории
+                    </ActionSheetItem>}
                     {meet.ismember &&
                     <ActionSheetItem onClick={() => removeMeetMember()} autoclose mode="destructive">
                         Отказаться от участия
@@ -60,15 +60,17 @@ class MeetBox extends Component {
     }
 
     render() {
-        const {meet, ...restProps} = this.props;
+        const {meet, restProps} = this.props;
         return (
-            <div onClick={this.goMeet} {...restProps}>
+            <div style={{
+                marginBottom: 10
+            }} onClick={this.goMeet} {...restProps}>
                 <div className='bigImage'
                      style={{
                          backgroundImage: `url(${meet.photo})`,
                      }}
                 />
-                <div className='newsDiv'>
+                <div className={this.props.state === 'bright_light' ? 'newsDiv shadowL' : 'newsDiv shadowD'}>
                     <div style={{minWidth: 0}}>
                         <div className='meetSubtitle' style={{color: 'var(--accent)'}}>
                             {meet.owner_name + " " + meet.owner_surname}
@@ -88,9 +90,15 @@ class MeetBox extends Component {
                             </div>
                         </div>
                     </div>
-                    <div style={{marginLeft: 'auto'}}>
-                        <Icon28MoreHorizontal onClick={(e) => this.openActionSheet(e)} fill={'var(--text_secondary)'}/>
-                    </div>
+                    {
+                        !this.props.onMeet &&
+                        <div style={{marginLeft: 'auto'}}>
+                            <Icon28MoreHorizontal
+                                onClick={(e) => this.openActionSheet(e)}
+                                fill={'var(--text_secondary)'}/>
+                        </div>
+
+                    }
                 </div>
             </div>
         )

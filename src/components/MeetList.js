@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import {Group, Placeholder} from '@vkontakte/vkui';
+import {
+    Group, Placeholder, Div, Spinner
+} from '@vkontakte/vkui';
 import MeetBox from './MeetBox/MeetBox';
 import Icon28RecentOutline from '@vkontakte/icons/dist/28/recent_outline';
 
 class MeetList extends Component {
     render() {
         const {meets, setParentState, getUserMeets, makeStory} = this.props;
-        if (!meets) return null
+        if (!meets) return <Div><Spinner/></Div>
         return (
             <div>
                 {
@@ -18,10 +20,11 @@ class MeetList extends Component {
                                         <MeetBox
                                             key={index}
                                             meet={meet}
+                                            {...this}
                                             makeStory={makeStory}
                                             getUserMeets={getUserMeets}
                                             setParentState={setParentState}
-                                            style={{marginTop: 12}}
+                                            style={{marginBottom: 12}}
                                         />
                                     ))
                             }
