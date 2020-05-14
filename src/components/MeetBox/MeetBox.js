@@ -28,14 +28,14 @@ class MeetBox extends Component {
                 if (isFave) {
                     let activeTab = state.activeTab
                     if (activeTab === 'all') {
-                        getUserMeets(userId);
+                        getUserMeets(fetchedUser.id);
                     } else if (activeTab === 'my') {
-                        getOwneredMeets(userId);
+                        getOwneredMeets(fetchedUser.id);
                     } else if (activeTab === 'exp') {
-                        getExpiredUserMeets(userId);
+                        getExpiredUserMeets(fetchedUser.id);
                     }
                 } else {
-                    getMeets(userId)
+                    getMeets(fetchedUser.id)
                 }
             });
         }
