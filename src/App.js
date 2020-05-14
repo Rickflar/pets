@@ -1,6 +1,6 @@
 import React from 'react';
 import connect from '@vkontakte/vk-bridge';
-import { View, Epic, Tabbar, ConfigProvider, Snackbar, TabbarItem, ScreenSpinner } from '@vkontakte/vkui';
+import { View, Epic, Tabbar, ConfigProvider, Snackbar, TabbarItem } from '@vkontakte/vkui';
 
 import '@vkontakte/vkui/dist/vkui.css';
 import './css/App.css';
@@ -46,7 +46,7 @@ class App extends React.Component {
 				id: null
 			},
 			cache: null,
-			popout: <ScreenSpinner />,
+			popout: null,
 			offline: false,
 			meets: false,
 			symbols_name: '',
@@ -90,7 +90,7 @@ class App extends React.Component {
 		};
 
 		window.showLoader = (show) => {
-			this.setState({ popout: show ? <ScreenSpinner /> : null });
+		//	this.setState({ popout: show ? <ScreenSpinner /> : null });
 		};
 
 		checkVersionAndroid();

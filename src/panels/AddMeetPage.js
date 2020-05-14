@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
     Button,
     Checkbox,
+    Div,
     File,
     FormLayout,
     FormStatus,
@@ -151,11 +152,13 @@ class AddMeetPage extends Component {
             <Panel id={id}>
                 <PanelHeader>{getMessage('add_meet_page')}</PanelHeader>
                 <Group header={<Header mode="secondary">Предпросмотр</Header>}>
-                    <MeetBox
-                        meet={meet}
-                        setParentState={null}
-                        style={{marginLeft: 12, marginRight: 12}}
-                    />
+                    <Div>
+                        <MeetBox
+                            meet={meet}
+                            setParentState={null}
+                            style={{marginLeft: 12, marginRight: 12}}
+                        />
+                    </Div>
                 </Group>
                 <Group header={<Header mode="secondary">Информация о петиции</Header>}>
                     <FormLayout>

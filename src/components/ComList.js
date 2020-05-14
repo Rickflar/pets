@@ -58,12 +58,17 @@ class ComList extends Component {
 
         const commAction = (id, ownerid) => {
             let link = "https://vk.com/id" + ownerid;
+            const user = parseInt(this.props.state.fetchedUser.id);
             setParentState({
                 popout:
                     <ActionSheet onClose={() => setParentState({popout: null})}>
                         {
-                            admins.includes(this.props.state.fetchedUser.id) &&
-                            <ActionSheetItem onClick={() => removeComment(id)} autoclose mode="destructive">
+                            (admins.includes(user) || parseInt(ownerid) === user )&&
+                            <ActionSheetItem
+                                onClick={() => removeComment(id)}
+                                autoclose
+                                mode="destructive"
+                            >
                                 Удалить комментарий
                             </ActionSheetItem>
                         }
@@ -74,7 +79,13 @@ class ComList extends Component {
                         >
                             Страница ВК
                         </ActionSheetItem>
-                        {IS_PLATFORM_IOS && <ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
+                        {IS_PLATFORM_IOS &&
+                        <ActionSheetItem
+                            autoclose
+                            mode="destructive"
+                        >Отменить
+                        </ActionSheetItem>
+                        }
                     </ActionSheet>,
             });
         }
