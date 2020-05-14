@@ -1,5 +1,5 @@
 import React from 'react';
-import connect from '@vkontakte/vk-connect';
+import connect from '@vkontakte/vk-bridge';
 import { View, Epic, Tabbar, ConfigProvider, Snackbar, TabbarItem, ScreenSpinner } from '@vkontakte/vkui';
 
 import '@vkontakte/vkui/dist/vkui.css';
