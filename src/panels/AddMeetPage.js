@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {
-    Panel,
-    PanelHeader,
+    Button,
+    Checkbox,
+    File,
     FormLayout,
     FormStatus,
-    Textarea,
-    Input,
-    Link,
-    Spinner,
     Group,
     Header,
+    Input,
+    Link,
+    Panel,
+    PanelHeader,
     Radio,
-    File,
-    Checkbox,
-    Button
+    Spinner,
+    Textarea
 } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import './Home.css';
@@ -135,7 +135,9 @@ class AddMeetPage extends Component {
     render() {
         const onChange = this.onChange;
         const {id, state, setParentState} = this.props;
-        const {name, start, snackbar, finish, description, symbols_name, symbols_description, photo, accept} = state;
+        const {
+            name, start, snackbar, finish, description, symbols_name, symbols_description, photo, accept, attemp
+        } = state;
         const formLang = getMessage('forms');
         const meet = {
             name: name || 'Сырки дорогие!',
@@ -188,8 +190,12 @@ class AddMeetPage extends Component {
                             value={name}
                             placeholder={'Сырки дорогие!'}
                             onChange={onChange}
-                            status={name === undefined || name === '' ? 'error' : 'valid'}
-                            bottom={name === undefined || name === '' ? 'Пожалуйста, укажите название петиции' : ''}
+                            status={
+                                (name === undefined || name === '') && attemp ? 'error' : 'valid'
+                            }
+                            bottom={
+                                (name === undefined || name === '') && attemp ? 'Пожалуйста, укажите название петиции' : ''
+                            }
                         />
                         <Textarea
                             top={<div style={{marginTop: -12}}>Описание {symbols_description}</div>}
@@ -198,8 +204,10 @@ class AddMeetPage extends Component {
                             placeholder="Требуем понизить цену на сырки"
                             value={description}
                             onChange={onChange}
-                            status={description === undefined || description === '' ? 'error' : 'valid'}
-                            bottom={description === undefined || description === '' ? 'Пожалуйста, укажите описание петиции' : ''}
+                            status={
+                                (description === undefined || description === '') && attemp ? 'error' : 'valid'
+                            }
+                            bottom={(description === undefined || description === '') && attemp ? 'Пожалуйста, укажите описание петиции' : ''}
                         />
                         <Input
                             type="date"
@@ -231,8 +239,8 @@ class AddMeetPage extends Component {
                             mode="outline"
                             name="file"
                             onChange={onChange}
-                            status={!photo ? 'error' : 'valid'}
-                            bottom={!photo ? 'Пожалуйста, загрузите обложку петиции' : ''}
+                            status={!photo && attemp ? 'error' : 'valid'}
+                            bottom={!photo && attemp ? 'Пожалуйста, загрузите обложку петиции' : ''}
                         />
                         {this.state.error &&
                         <div style={{marginTop: -12}}>
@@ -248,10 +256,12 @@ class AddMeetPage extends Component {
                             </FormStatus>
                         </div>
                         }
-                        <Checkbox style={{marginTop: -12}} checked={state.accept}
-                                  onChange={(e) => this.props.setParentState({accept: e.currentTarget.checked})}
-                                  status={!accept ? 'error' : 'valid'}
-                                  bottom={!accept ? 'Пожалуйста, примите пользовательское соглашение' : ''}
+                        <Checkbox
+                            style={{marginTop: -12}}
+                            checked={state.accept}
+                            onChange={(e) => this.props.setParentState({accept: e.currentTarget.checked})}
+                            status={!accept && attemp ? 'error' : 'valid'}
+                            bottom={!accept && attemp ? 'Пожалуйста, примите пользовательское соглашение' : ''}
                         >Согласен с
                             <Link target="_blank"
                                   href="https://vk.com/@virtualmeetingsclub-pravila-razmescheniya"> правилами</Link></Checkbox>
@@ -263,9 +273,17 @@ class AddMeetPage extends Component {
                         }}>
                             Уведомить о результате модерации
                         </Checkbox>
-                        <Button mode="outline" size="xl"
-                                disabled={!this.checkIfAllOk(name, description, start, finish, photo, accept)}
-                                style={{marginTop: -12}} onClick={() => {
+                        <Button
+                            mode="outline"
+                            size="xl"
+                            disabled={!this.checkIfAllOk(name, description, start, finish, photo, accept) && attemp}
+                            style={{marginTop: -12}} onClick={() => {
+                                setParentState({
+                                    attemp: attemp + 1
+                                })
+                                if(!this.checkIfAllOk(name, description, start, finish, photo, accept)){
+                                    return;
+                                }
                             this.AddMeet();
                         }}>
                             {this.state.disabled ? <Spinner/> : formLang.add}

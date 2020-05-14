@@ -53,13 +53,13 @@ class App extends React.Component {
 			symbols_description: '',
 			accept: false,
 			name: '',
-			start: false, //0000-00-00
-			finish: false, // 0000-00-00
+			start: '0000-00-00', //
+			finish: '0000-00-00', // 0000-00-00
 			start_time: '00:00:00',
 			finish_time: '00:00:00',
 			description: '',
-			photo: false,
-			meet: false,
+			photo: '',
+			meet: '',
 			noty: false,
 			comments: false,
 			/*		currentMeetId: false,*/
@@ -70,6 +70,8 @@ class App extends React.Component {
 			groupSelected: false,
 			changedRadio: false,
 			scheme: false ? 'space_gray' : 'bright_light',
+
+			attemp: 0
 		};
 
 		this.initApp();
