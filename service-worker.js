@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "//rickglar.github.io/raspguap/pets/precache-manifest.9a420dda56056120c1a3a4bab8007310.js"
+  "/pets/precache-manifest.7802b7712cd1d6ff5176acf27c30a678.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("//rickglar.github.io/raspguap/pets/index.html", {
+workbox.routing.registerNavigationRoute("/pets/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
