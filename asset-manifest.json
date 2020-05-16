@@ -1,15 +1,15 @@
 {
-  "main.css": "./static/css/main.08f6c22c.chunk.css",
-  "main.js": "./static/js/main.488b1fd3.chunk.js",
-  "main.js.map": "./static/js/main.488b1fd3.chunk.js.map",
-  "runtime~main.js": "./static/js/runtime~main.d653cc00.js",
-  "runtime~main.js.map": "./static/js/runtime~main.d653cc00.js.map",
-  "static/css/2.796dc529.chunk.css": "./static/css/2.796dc529.chunk.css",
-  "static/js/2.66392cd3.chunk.js": "./static/js/2.66392cd3.chunk.js",
-  "static/js/2.66392cd3.chunk.js.map": "./static/js/2.66392cd3.chunk.js.map",
-  "index.html": "./index.html",
-  "precache-manifest.636677705d6a6d37de112fb7d0445ce2.js": "./precache-manifest.636677705d6a6d37de112fb7d0445ce2.js",
-  "service-worker.js": "./service-worker.js",
-  "static/css/2.796dc529.chunk.css.map": "./static/css/2.796dc529.chunk.css.map",
-  "static/css/main.08f6c22c.chunk.css.map": "./static/css/main.08f6c22c.chunk.css.map"
+  "main.css": "//rickglar.github.io/raspguap/pets/static/css/main.08f6c22c.chunk.css",
+  "main.js": "//rickglar.github.io/raspguap/pets/static/js/main.488b1fd3.chunk.js",
+  "main.js.map": "//rickglar.github.io/raspguap/pets/static/js/main.488b1fd3.chunk.js.map",
+  "runtime~main.js": "//rickglar.github.io/raspguap/pets/static/js/runtime~main.39034402.js",
+  "runtime~main.js.map": "//rickglar.github.io/raspguap/pets/static/js/runtime~main.39034402.js.map",
+  "static/css/2.796dc529.chunk.css": "//rickglar.github.io/raspguap/pets/static/css/2.796dc529.chunk.css",
+  "static/js/2.24c5699a.chunk.js": "//rickglar.github.io/raspguap/pets/static/js/2.24c5699a.chunk.js",
+  "static/js/2.24c5699a.chunk.js.map": "//rickglar.github.io/raspguap/pets/static/js/2.24c5699a.chunk.js.map",
+  "index.html": "//rickglar.github.io/raspguap/pets/index.html",
+  "precache-manifest.9a420dda56056120c1a3a4bab8007310.js": "//rickglar.github.io/raspguap/pets/precache-manifest.9a420dda56056120c1a3a4bab8007310.js",
+  "service-worker.js": "//rickglar.github.io/raspguap/pets/service-worker.js",
+  "static/css/2.796dc529.chunk.css.map": "//rickglar.github.io/raspguap/pets/static/css/2.796dc529.chunk.css.map",
+  "static/css/main.08f6c22c.chunk.css.map": "//rickglar.github.io/raspguap/pets/static/css/main.08f6c22c.chunk.css.map"
 }
